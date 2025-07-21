@@ -9,9 +9,9 @@
 
 
 const users = [
-  { name: "Alice", age: 30 },
-  { name: "Bob", age: 24 },
-  { name: "Charlie", age: 28 }
+	{ name: "Alice", age: 30 },
+	{ name: "Bob", age: 24 },
+	{ name: "Charlie", age: 28 }
 ];
 
 users.forEach(user => {
@@ -22,9 +22,9 @@ users.forEach(user => {
 // console.log(result);
 
 const carrello = [
-  { nome: "Pane", prezzo: 2.5 },
-  { nome: "Latte", prezzo: 1.8 },
-  { nome: "Uova", prezzo: 3.2 }
+	{ nome: "Pane", prezzo: 2.5 },
+	{ nome: "Latte", prezzo: 1.8 },
+	{ nome: "Uova", prezzo: 3.2 }
 ];
 
 carrello.forEach(alimento => {
@@ -37,14 +37,65 @@ carrello.forEach(alimento => {
 // quando serve IL PRIMO elemento che soddisfa la condizione
 
 const libri = [
-	{ titolo: "La salvezza di Aka", autore: "Ursula K. Le Guin"},
-	{ titolo: "Il barone rampante", autore: "Italo Calvino"},
-	{ titolo: "Gli androidi sognano pecore elettriche?", autore: "Philip Dick"}
+	{ titolo: "La salvezza di Aka", autore: "Ursula K. Le Guin" },
+	{ titolo: "Il barone rampante", autore: "Italo Calvino" },
+	{ titolo: "Anonimo", autore: "Anonimo"},
+	{ titolo: "Gli androidi sognano pecore elettriche?", autore: "Philip Dick" }
 ];
 
-const result = libri.find(libro => libro.autore === "Italo Calvino");
-if (result) {
-	console.log(result);
-} else {
-	console.log("Libro non trovato!");
+// const result = libri.find(libro => libro.autore === "Italo Calvino");
+// if (result) {
+// 	console.log(result);
+// } else {
+// 	console.log("Libro non trovato!");
+// }
+
+function cercaLibroPerAutore(autore) {
+	const libro = libri.find(libro => libro.autore === autore);
+	if (libro) {
+		console.log(`Libro trovato: ${libro.titolo} di ${libro.autore}`);
+	} else {
+		console.log(`Nessun libro trovato per l'autore: ${autore}`);
+	}
 }
+
+cercaLibroPerAutore("Italo Calvino");
+cercaLibroPerAutore("Neil Gaiman");
+
+
+// some() è un metodo per array che verifica se almeno un elemento soddisfa una certa condizione
+// restituisce un booleano
+// usarlo per sapere se c'è almeno un utente online
+// verificare se un prodotto è esaurito
+// controllare se l'email è già stata letta
+
+const anonimo = libri.some(libro => !libro.autore);
+console.log(anonimo);
+
+// every() è un metodo array che verifica se TUTTI GLI ELEMENTI dell'array soddisfano una condizione
+// restituisce un booleano
+
+const titolo = libri.every(libro => libro.titolo);
+console.log(titolo);
+
+const lunghezzaTitoli = libri.every(libro => libro.titolo.length >= 10);
+console.log(lunghezzaTitoli);
+
+const titoloAutore = libri.every(libro => libro.titolo && libro.autore);
+console.log(titoloAutore);
+
+// const haTitoloEAutore = libro => libro.titolo && libro.autore;
+// const tuttiOk = libri.every(haTitoloEAutore);
+
+// includes() verifica se un array contiene un certo valore
+// funziona con valori primitivi (stirng, number, boolean)
+// non funziona con gli oggetti
+
+const listaSpesaContiene = ["pane", "burro", "latte"].includes("latte");
+console.log(listaSpesaContiene);
+
+// findIndex() restituisce l'indice del primo elemento che soddisfa la condizione
+// se non lo trova restituisce -1
+
+const indice = [1, 3, 5, 8].findIndex(num => num % 2 === 0);
+console.log(indice);
