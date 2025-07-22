@@ -12,9 +12,39 @@ const libri = [
 
 // console.log(libri);
 
-const gruppi = {}; // creo un oggetto vuoto
+// const gruppi = {}; // creo un oggetto vuoto
+// libri.forEach(libro => {
+//   if (!gruppi[libro.autore]) {
+//     gruppi[libro.autore] = []; // creo l'array per quell'autore se non esiste
+//   }
+//   gruppi[libro.autore].push(libro.titolo); // poi pusho
+
+// });
+
+// console.log(gruppi)
+
+let gruppi = [];
+
 libri.forEach(libro => {
-    gruppi.push(libro);
+  if (!gruppi[libro.autore]) {
+    gruppi = {
+      autore: libro.autore,
+      libri: [libro.titolo]
+    };
+  }
+
+  gruppi[libro.autore].libri.push(libro.titolo);
 });
 
-console.log(gruppi)
+console.log(gruppi);
+
+
+// const libro = { autore: "Italo Calvino" };
+// const gruppi = {};
+
+// gruppi.autore = "Jostein Gaarder";
+
+// gruppi[libro.autore] = "Se una notte d'inverno un viaggiatore"; //
+
+// console.log(gruppi);
+
