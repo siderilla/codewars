@@ -21,5 +21,28 @@ const tasks = [
 // scade = riordine.sort((a, b) => a.scadenza - b.scadenza);
 // console.log(scade);
 
-const result = tasks.filter((task) => task.priorità <= 2 && task.scadenza <= "2025-07-22");
-console.log(result);
+// const result = tasks.filter((task) => task.priorità <= 2 && task.scadenza <= "2025-07-22");
+// console.log(result);
+
+// scrivere una funzione riutilizzabile che prende in input un array di task e 
+// li ordina in base alla data di scadenza
+
+// function sortByDeadline(array) {
+//   let newArray = [...array];
+//   newArray.sort((a, b) => new Date(a.scadenza) - new Date(b.scadenza));
+//   console.log(newArray);
+// }
+
+// sortByDeadline(tasks);
+
+function sortByDeadline(array, key) {
+  let newArray = [...array];
+  newArray.sort((a, b) => {
+    const aVal = typeof a[key] === "string" ? new Date(a[key]) : a[key];
+    const bVal = typeof b[key] === "string" ? new Date(b[key]) : b[key];
+    return aVal - bVal;
+  });
+  console.log(newArray);
+}
+
+sortByDeadline(tasks, "scadenza");

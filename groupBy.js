@@ -26,14 +26,14 @@ const libri = [
 let gruppi = [];
 
 libri.forEach(libro => {
-  if (!gruppi[libro.autore]) {
-    gruppi = {
-      autore: libro.autore,
-      libri: [libro.titolo]
-    };
+  const foundAutore = gruppi.find((gruppo) => gruppo.autore === libro.autore)
+
+  if (!foundAutore) {
+    gruppi.push({ autore: libro.autore, titolo: [libro.titolo] });
+  } else {
+    foundAutore.titolo.push(libro.titolo);
   }
 
-  gruppi[libro.autore].libri.push(libro.titolo);
 });
 
 console.log(gruppi);
