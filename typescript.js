@@ -24,7 +24,6 @@ var Priority;
     Priority[Priority["Medium"] = 2] = "Medium";
     Priority[Priority["Low"] = 3] = "Low";
 })(Priority || (Priority = {}));
-var p = Priority.High;
 // // FUNZIONI TIPATE
 // function sum(a: number, b: number): number { // (parametro: tipo): tipo del valore di ritorno
 //     return a + b;
@@ -71,13 +70,30 @@ var p = Priority.High;
 var Tasks = [
     { title: 'Comprare latte', priority: Priority.Medium, expiration: '2025-07-25', completed: false },
     { title: 'Ripassare Angular', priority: Priority.High, expiration: '2025-07-24', completed: false },
-    { title: 'Fare il backup', priority: Priority.Low, expiration: '2025-07-28', completed: true }
+    { title: 'Fare il backup', priority: Priority.Low, expiration: '2025-07-28', completed: true },
+    { title: 'Suonare Dragonborne', priority: Priority.Low, expiration: '2025-07-29', completed: false }
 ];
-function filterByPriority(tasks, livello) {
-    return tasks.filter(function (task) { return task.priority <= livello; });
+function filterByPriority(tasks, level) {
+    return tasks.filter(function (task) { return task.priority <= level; });
 }
 function sortByExpiration(tasks) {
     return __spreadArray([], tasks, true).sort(function (a, b) { return a.expiration.localeCompare(b.expiration); });
 }
 console.log('Solo alta o media:', filterByPriority(Tasks, Priority.Medium));
 console.log('Ordinati per scadenza:', sortByExpiration(Tasks));
+var statusToBool = {
+    Complete: true,
+    Incomplete: false
+};
+function isCompleted(tasks, status) {
+    var newTasks = tasks.filter(function (task) {
+        return task.completed === statusToBool[status];
+    });
+    return newTasks;
+}
+console.log(isCompleted(Tasks, 'Complete'));
+function countByPriority(tasks, priority) {
+    var counted = tasks.filter(function (task) { return task.priority === priority; }).length;
+    return counted;
+}
+console.log(countByPriority(Tasks, Priority.Low));
